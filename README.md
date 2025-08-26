@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js AI Chat App (with Testune Integration)
 
-## Getting Started
+This is a **Next.js AI Chat App** template with built-in integration for [Testune](https://testune.xyz), making it easy to experiment with and optimize your LLM prompts.
 
-First, run the development server:
+---
+
+## 🚀 Features
+
+-   ⚡ Next.js 14 (App Router)
+-   📝 Pre-configured Testune SDK for prompt A/B testing
+-   🔑 Bring Your Own LLM API key (OpenAI)
+-   📊 Feedback & analytics pipeline via Testune
+-   💬 Ready-to-use chat interface
+
+---
+
+## 📂 Project Structure
+
+```bash
+.
+├── app/                # Next.js app router pages
+├── components/         # Reusable React components
+├── lib/                # Testune + LLM utilities
+├── styles/             # Global styles
+└── package.json
+```
+
+---
+
+## 🔧 Setup
+
+### 1. Clone the repo
+
+```bash
+git clone https://github.com/your-org/nextjs-ai-chat-app.git
+cd nextjs-ai-chat-app
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+# or
+yarn install
+```
+
+### 3. Configure environment variables
+
+Create a `.env.local` file with:
+
+```bash
+NEXT_PUBLIC_TESTUNE_API_KEY=your_testune_api_key
+NEXT_PUBLIC_LLM_API_KEY=your_llm_api_key
+```
+
+### 4. Run locally
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📊 Using Testune
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This template comes pre-wired with **Testune analytics and A/B testing** for LLM prompts.
 
-## Learn More
+Example usage:
 
-To learn more about Next.js, take a look at the following resources:
+```ts
+import { testuneClient } from "@/lib/testune";
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+async function getResponse(userMessage: string) {
+	const response = await testuneClient.sendMessage({
+		message: userMessage,
+		promptGroup: "chat-prompt-v1",
+	});
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+	return response;
+}
+```
 
-## Deploy on Vercel
+You can monitor performance and run A/B tests directly from the [Testune dashboard](https://testune.xyz).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🧑‍💻 Example Usage
+
+1. Run the app locally (`npm run dev`).
+2. Open the chat UI at [http://localhost:3000](http://localhost:3000).
+3. Enter a message and see the Testune-powered LLM respond.
+4. Check the dashboard for analytics.
+
+---
+
+## 📜 License
+
+MIT License. See [LICENSE](./LICENSE) for details.
